@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Flogar\Xml\Builder;
 
+use Flogar\Model\TimeZonePe;
 use Flogar\Xml\Filter\FormatFilter;
 use Twig\Environment;
 use Twig\Extension\CoreExtension;
@@ -15,11 +16,6 @@ use Twig\TwigFilter;
 class TwigBuilder
 {
     /**
-     * Zona horaria para fechas en XML.
-     */
-    public const TIMEZONE = 'America/Lima';
-
-    /**
      * @var Environment
      */
     protected $twig;
@@ -31,7 +27,7 @@ class TwigBuilder
      */
     public function __construct(array $options = [])
     {
-        $this->initTwig($options);
+        $this->twig = $this->createTwig($options);
     }
 
     /**
@@ -49,22 +45,22 @@ class TwigBuilder
         ]);
     }
 
-    private function initTwig($options)
+    private function createTwig(array $options)
     {
         $loader = new FilesystemLoader(__DIR__.'/../Templates');
 
-        $twig = new Environment($loader, $options);
-        $this->loadFilterAndFunctions($twig);
-        $this->configureTimezone($twig);
+        $twigEnv = new Environment($loader, $options);
+        $this->loadFilterAndFunctions($twigEnv);
+        $this->configureTimezone($twigEnv);
 
-        $this->twig = $twig;
+        return $twigEnv;
     }
 
     private function configureTimezone(Environment $twig)
     {
         $extension = $twig->getExtension(CoreExtension::class);
         if ($extension instanceof CoreExtension) {
-            $extension->setTimezone(self::TIMEZONE);
+            $extension->setTimezone(TimeZonePe::DEFAULT);
         }
     }
 

@@ -12,8 +12,8 @@
     "homepage": "https://github.com/jucafloga/flogar-xml",
     "type": "library",
     "require": {
-        "php": "^7.2",
-        "flogar/core": "^2.0.1",
+        "php": ">=7.2",
+        "flogar/core": "^3.0",
         "twig/twig": "~3.0"
     },
     "autoload": {
