@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flogar\Xml\Builder;
 
 use Flogar\Builder\BuilderInterface;
+use Flogar\Model\Despatch\Despatch;
 use Flogar\Model\DocumentInterface;
 
 /**
@@ -20,6 +22,10 @@ class DespatchBuilder extends TwigBuilder implements BuilderInterface
      */
     public function build(DocumentInterface $document): ?string
     {
-        return $this->render('despatch.xml.twig', $document);
+        /** @var Despatch $despatch */
+        $despatch = $document;
+        $template = $despatch->getVersion() === '2022' ? 'despatch2022.xml.twig': 'despatch.xml.twig';
+
+        return $this->render($template, $document);
     }
 }

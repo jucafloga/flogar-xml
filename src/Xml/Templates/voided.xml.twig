@@ -24,7 +24,7 @@
         </cac:SignatoryParty>
         <cac:DigitalSignatureAttachment>
             <cac:ExternalReference>
-                <cbc:URI>#FLOGAR-SIGN</cbc:URI>
+                <cbc:URI>#GREENTER-SIGN</cbc:URI>
             </cac:ExternalReference>
         </cac:DigitalSignatureAttachment>
     </cac:Signature>
@@ -38,13 +38,13 @@
         </cac:Party>
     </cac:AccountingSupplierParty>
     {% for det in doc.details %}
-        <sac:VoidedDocumentsLine>
-            <cbc:LineID>{{ loop.index }}</cbc:LineID>
-            <cbc:DocumentTypeCode>{{ det.tipoDoc }}</cbc:DocumentTypeCode>
-            <sac:DocumentSerialID>{{ det.serie }}</sac:DocumentSerialID>
-            <sac:DocumentNumberID>{{ det.correlativo }}</sac:DocumentNumberID>
-            <sac:VoidReasonDescription><![CDATA[{{ det.desMotivoBaja|raw }}]]></sac:VoidReasonDescription>
-        </sac:VoidedDocumentsLine>
+    <sac:VoidedDocumentsLine>
+        <cbc:LineID>{{ loop.index }}</cbc:LineID>
+        <cbc:DocumentTypeCode>{{ det.tipoDoc }}</cbc:DocumentTypeCode>
+        <sac:DocumentSerialID>{{ det.serie }}</sac:DocumentSerialID>
+        <sac:DocumentNumberID>{{ det.correlativo }}</sac:DocumentNumberID>
+        <sac:VoidReasonDescription><![CDATA[{{ det.desMotivoBaja|raw }}]]></sac:VoidReasonDescription>
+    </sac:VoidedDocumentsLine>
     {% endfor %}
 </VoidedDocuments>
 {% endapply %}

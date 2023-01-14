@@ -5,20 +5,25 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "jucafloga",
-            "email": "jucafloga@gmail.com"
+            "name": "Jucafloga",
+            "email": "jucafloga@outlook.com"
         }
     ],
     "homepage": "https://github.com/jucafloga/flogar-xml",
     "type": "library",
     "require": {
-        "php": ">=7.2",
-        "flogar/core": "^3.0",
+        "php": ">=7.4",
+        "flogar/core": "^5.0",
         "twig/twig": "~3.0"
     },
     "autoload": {
         "psr-4": {
             "Flogar\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "5.0-dev"
         }
     }
 }
